@@ -2,8 +2,8 @@
 {
     interface IFlyable
     {
-        protected void FlyTo(Point p1);
-        protected double GetFlyTime(Point p1);
+        void FlyTo(Point p1);
+        double GetFlyTime(Point p1);
 
     }  
 }

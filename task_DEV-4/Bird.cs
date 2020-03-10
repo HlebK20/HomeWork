@@ -8,11 +8,11 @@ namespace task_DEV_4
     {
         Point p;
         int speed;
-        void IFlyable.FlyTo(Point p1)
+        public void FlyTo(Point p1)
         {
             p = p1;
         }
-        double IFlyable.GetFlyTime(Point p1)
+        public double GetFlyTime(Point p1)
         {
             Random rnd = new Random();
             speed = rnd.Next(1,20);
