@@ -2,20 +2,20 @@
 {
     abstract class Vehicle
     {
-        Engine _Engine;
-        Transmission _Trnansmission;
-        Chassis _Chassis;
+        Engine _engine;
+        Transmission _transmission;
+        Chassis _chassis;
         protected void getInfo()
         {
-            System.Console.WriteLine("Engine is " + _Engine);
-            System.Console.WriteLine("Transmission is " + _Trnansmission);
-            System.Console.WriteLine("Chassis is " + _Chassis);
+            System.Console.WriteLine("Engine is " + _engine);
+            System.Console.WriteLine("Transmission is " + _transmission);
+            System.Console.WriteLine("Chassis is " + _chassis);
         }
-        protected void VehicleInit(Engine engine, Transmission transmission, Chassis chassis)
+        protected Vehicle(Engine engine, Transmission transmission, Chassis chassis)
         {
-            _Engine = engine;
-            _Trnansmission = transmission;
-            _Chassis = chassis;
+            _engine = engine;
+            _transmission = transmission;
+            _chassis = chassis;
         }
     }
 }

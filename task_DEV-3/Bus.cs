@@ -9,10 +9,9 @@
             System.Console.WriteLine("Maximum passengers count is " + _maxCount);
             base.getInfo();
         }
-        Bus(int maxCount, Engine engine, Transmission transmission, Chassis chassis)
+        public Bus(int maxCount, Engine engine, Transmission transmission, Chassis chassis): base(engine,transmission,chassis)
         {
             _maxCount = maxCount;
-            VehicleInit(engine, transmission, chassis);
         }
     }
 }

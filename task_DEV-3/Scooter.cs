@@ -9,10 +9,9 @@
             System.Console.WriteLine("This scooter is made of " + _material);
             base.getInfo();
         }
-        Scooter(string material, Engine engine, Transmission transmission, Chassis chassis)
+        public Scooter(string material, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis)
         {
             _material = material;
-            VehicleInit(engine, transmission, chassis);
         }
     }
 }

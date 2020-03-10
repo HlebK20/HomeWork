@@ -9,10 +9,9 @@
             System.Console.WriteLine("Truck height is " + _height);
             base.getInfo();
         }
-        Truck(double height, Engine engine, Transmission transmission, Chassis chassis)
+        public Truck(double height, Engine engine, Transmission transmission, Chassis chassis):base(engine, transmission, chassis)
         {
             _height = height;
-            VehicleInit(engine, transmission, chassis);
         }
     }
 }
