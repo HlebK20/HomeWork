@@ -4,6 +4,6 @@
     {
         void FlyTo(Point p1);
         double GetFlyTime(Point p1);
-
+        
     }  
 }

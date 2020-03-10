@@ -6,15 +6,42 @@ namespace task_DEV_4
 {
     class Plane : IFlyable
     {
-        Point p;
-        int speed;
-        public void FlyTo(Point p1)
+        Point _point;
+        int _speed;
+        int _maxspeed;
+        public void FlyTo(Point destintaion)
         {
-            p = p1;
+            _point = destintaion;
         }
-        public double GetFlyTime(Point p1)
+        public double GetFlyTime(Point destination)
         {
-            return 0;
+            double time=0;
+            double traveled = 0;
+            int increase = 0;
+            while (traveled <= _point.Distance(destination))
+            {
+                traveled += _speed;
+                if (_speed < _maxspeed)
+                {
+                    increase = (int)(_speed / 10);
+                    _speed += increase;
+                }
+                time++;
+            }
+            _speed = 0;
+            return time;
+        }
+        public Plane(Point point, int speed, int maxspeed)
+        {
+            _point = point;
+            _speed = CheckBelowZero(speed);
+            _maxspeed = CheckBelowZero(maxspeed);
+        }
+        int CheckBelowZero(int valve)
+        {
+            if (valve >= 0)
+                return valve;
+            throw new ArgumentException();
         }
     }
 }
