@@ -6,20 +6,26 @@ namespace DEV_1
 {
     public class StringDif
     {
-        public static int CountDifferentSymbols(string string_from_cmd)
+        /// <summary>
+        /// Finds the maximal length of a series of different symbols
+        /// </summary>
+        /// <param name="string_with_symbols"></param>
+        /// <returns>Maximal length of a series of different symbols</returns>
+        public static int CountDifferentSymbols(string string_with_symbols)
         {
-            if (string_from_cmd.Length == 0)
+            //Check if string is empty
+            if (string_with_symbols.Length == 0)
                 return 0;
             int count = 1;
             int maxcount = count;
-            for (int i = 1; i < string_from_cmd.Length; i++)
+            for (int i = 1; i < string_with_symbols.Length; i++)
             {
-
-                if (string_from_cmd[i] == string_from_cmd[i - 1])
+                //Comparing current and previos symbol
+                if (string_with_symbols[i] == string_with_symbols[i - 1])
                 {
                     count = 1;
                 }
-                if (string_from_cmd[i] != string_from_cmd[i - 1])
+                if (string_with_symbols[i] != string_with_symbols[i - 1])
                 {
                     count++;
                 }
