@@ -2,7 +2,7 @@
 
 namespace task_DEV_3
 {
-    class Engine
+    public class Engine
     {
         double _power;
         double _Volume;
@@ -20,7 +20,7 @@ namespace task_DEV_3
             get { return _Volume; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _Volume = value;
             }
         }
@@ -29,7 +29,7 @@ namespace task_DEV_3
             get { return _typeOfEngine; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _typeOfEngine = value;
             }
         }
@@ -38,7 +38,7 @@ namespace task_DEV_3
             get { return _power; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _power = value;
             }
         }
@@ -47,15 +47,19 @@ namespace task_DEV_3
             get { return _serialNumber; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _serialNumber = value;
             }
         }
-        private void CheckNull(object value)
+        private void CheckNullOrEmpty(object value)
         {
-            if (value is null)
+            if (value == null)
             {
                 throw new ArgumentNullException();
+            }
+            if (value.GetType() == typeof(string) && (string)value == string.Empty)
+            {
+                throw new FormatException();
             }
         }
     }

@@ -1,6 +1,6 @@
 ﻿namespace task_DEV_3
 {
-    class Truck : Vehicle
+    public class Truck : Vehicle
     {
         double _height;
         new public void GetInfo()

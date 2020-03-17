@@ -2,7 +2,7 @@
 
 namespace task_DEV_3
 {
-    class Chassis
+    public class Chassis
     {
         int _numberOfWheels;
         string _serialNumber;
@@ -19,7 +19,7 @@ namespace task_DEV_3
             get { return _numberOfWheels; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _numberOfWheels = value;
             }
         }
@@ -28,11 +28,7 @@ namespace task_DEV_3
             get { return _serialNumber; }
             set
             {
-                CheckNull(value);
-                if (value == string.Empty)
-                {
-                    throw new FormatException();
-                }
+                CheckNullOrEmpty(value);
                 _serialNumber = value;
             }
         }
@@ -42,14 +38,20 @@ namespace task_DEV_3
             get { return _permissibleLoad; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _permissibleLoad = value;
             }
         }
-        private void CheckNull(object value)
+        private void CheckNullOrEmpty(object value)
         {
-            if (value is null)
+            if (value == null)
+            {
                 throw new ArgumentNullException();
+            }
+            if (value.GetType() == typeof(string) && (string)value == string.Empty)
+            {
+                throw new FormatException();
+            }
         }
     }
 }

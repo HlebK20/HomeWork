@@ -2,7 +2,7 @@
 
 namespace task_DEV_3
 {
-    abstract class Vehicle
+    abstract public class Vehicle
     {
         Engine _engine;
         Transmission _transmission;

@@ -1,6 +1,6 @@
 ﻿namespace task_DEV_3
 {
-    class Scooter : Vehicle
+    public class Scooter : Vehicle
     {
         string _material;
         new public void GetInfo()

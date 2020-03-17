@@ -2,7 +2,7 @@
 
 namespace task_DEV_3
 {
-    class Transmission
+    public class Transmission
     {
         string _typeTransmission;
         string _vendor;
@@ -18,7 +18,7 @@ namespace task_DEV_3
             get { return _vendor; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _vendor = value;
             }
         }
@@ -27,7 +27,7 @@ namespace task_DEV_3
             get { return _typeTransmission; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _typeTransmission = value;
             }
         }
@@ -37,15 +37,19 @@ namespace task_DEV_3
             get { return _numberOfGears; }
             set
             {
-                CheckNull(value);
+                CheckNullOrEmpty(value);
                 _numberOfGears = value;
             }
         }
-        private void CheckNull(object value)
+        private void CheckNullOrEmpty(object value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException();
+            }
+            if (value.GetType() == typeof(string) && (string)value == string.Empty)
+            {
+                throw new FormatException();
             }
         }
     }

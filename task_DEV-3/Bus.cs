@@ -1,6 +1,6 @@
 ﻿namespace task_DEV_3
 {
-    class Bus : Vehicle
+    public class Bus : Vehicle
     {
         int _maxPassengers;
         new public void GetInfo()
