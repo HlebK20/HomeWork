@@ -4,16 +4,20 @@ namespace task_DEV_3
 {
     class Car : Vehicle
     {
-        int _seatNum;
-        new public void getInfo()
+        int _numberOfSeats;
+        new public void GetInfo()
         {
-            System.Console.WriteLine("Type: Car");
-            System.Console.WriteLine("Number of seats is " + _seatNum);
-            base.getInfo();
+            Console.WriteLine("Type: Car");
+            Console.WriteLine("Number of seats is " + _numberOfSeats);
+            base.GetInfo();
         }
-        public Car(int seatNum, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis)
+        public Car(int numberOfSeats, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis)
         {
-            _seatNum = seatNum;
+            if (numberOfSeats < 1)
+            {
+                throw new ArgumentException();
+            }
+            _numberOfSeats = numberOfSeats; 
         }
     }
 }

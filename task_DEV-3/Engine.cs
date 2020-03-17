@@ -4,16 +4,16 @@ namespace task_DEV_3
 {
     class Engine
     {
-        double _Power;
+        double _power;
         double _Volume;
-        string _TypeEng;
-        string _SerialNum;
-        public Engine(double Power, double Volume, string TypeEng, string SerialNum)
+        string _typeOfEngine;
+        string _serialNumber;
+        public Engine(double power, double volume, string typeOfEngine, string serialNumber)
         {
-            _Power = Power;
-            _Volume = Volume;
-            _TypeEng = TypeEng;
-            _SerialNum = SerialNum;
+            Power = power;
+            Volume = volume;
+            TypeOfEngine = typeOfEngine;
+            SerialNumber = serialNumber;
         }
         public double Volume
         {
@@ -24,37 +24,39 @@ namespace task_DEV_3
                 _Volume = value;
             }
         }
-        public string TypeEng
+        public string TypeOfEngine
         {
-            get { return _TypeEng; }
+            get { return _typeOfEngine; }
             set
             {
                 CheckNull(value);
-                _TypeEng = value;
+                _typeOfEngine = value;
             }
         }
         public double Power
         {
-            get { return _Power; }
+            get { return _power; }
             set
             {
                 CheckNull(value);
-                _Power = value;
+                _power = value;
             }
         }
-        public string SerialNum
+        public string SerialNumber
         {
-            get { return _SerialNum; }
+            get { return _serialNumber; }
             set
             {
                 CheckNull(value);
-                _SerialNum = value;
+                _serialNumber = value;
             }
         }
         private void CheckNull(object value)
         {
-            if (value == null)
+            if (value is null)
+            {
                 throw new ArgumentNullException();
+            }
         }
     }
 }

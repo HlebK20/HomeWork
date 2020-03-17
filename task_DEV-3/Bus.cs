@@ -2,16 +2,16 @@
 {
     class Bus : Vehicle
     {
-        int _maxCount;
-        new public void getInfo()
+        int _maxPassengers;
+        new public void GetInfo()
         {
             System.Console.WriteLine("Type: Bus");
-            System.Console.WriteLine("Maximum passengers count is " + _maxCount);
-            base.getInfo();
+            System.Console.WriteLine("Maximum passengers count is " + _maxPassengers);
+            base.GetInfo();
         }
-        public Bus(int maxCount, Engine engine, Transmission transmission, Chassis chassis): base(engine,transmission,chassis)
+        public Bus(int maxPassengers, Engine engine, Transmission transmission, Chassis chassis): base(engine,transmission,chassis)
         {
-            _maxCount = maxCount;
+            _maxPassengers = maxPassengers;
         }
     }
 }

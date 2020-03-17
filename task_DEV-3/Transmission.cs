@@ -4,47 +4,49 @@ namespace task_DEV_3
 {
     class Transmission
     {
-        string _TypeTrn;
-        string _Vendor;
-        int _GearNum;
-        public Transmission(string TypeTrn, string Vendor, int GearNum)
+        string _typeTransmission;
+        string _vendor;
+        int _numberOfGears;
+        public Transmission(string typeTransmission, string vendor, int numberOfGears)
         {
-            _TypeTrn = TypeTrn;
-            _Vendor = Vendor;
-            _GearNum = GearNum;
+            TypeTransmission = typeTransmission;
+            Vendor = vendor;
+            NumberOfGears = numberOfGears;
         }
         public string Vendor
         {
-            get { return _Vendor; }
+            get { return _vendor; }
             set
             {
                 CheckNull(value);
-                _Vendor = value;
+                _vendor = value;
             }
         }
-        public string TypeTrn
+        public string TypeTransmission
         {
-            get { return _TypeTrn; }
+            get { return _typeTransmission; }
             set
             {
                 CheckNull(value);
-                _TypeTrn = value;
+                _typeTransmission = value;
             }
         }
 
-        public int GearNum
+        public int NumberOfGears
         {
-            get { return _GearNum; }
+            get { return _numberOfGears; }
             set
             {
                 CheckNull(value);
-                _GearNum = value;
+                _numberOfGears = value;
             }
         }
         private void CheckNull(object value)
         {
             if (value == null)
+            {
                 throw new ArgumentNullException();
+            }
         }
     }
 }

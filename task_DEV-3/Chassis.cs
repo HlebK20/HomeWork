@@ -4,47 +4,51 @@ namespace task_DEV_3
 {
     class Chassis
     {
-        int _Wheels;
-        string _SerialNum;
-        double _Allowed;
+        int _numberOfWheels;
+        string _serialNumber;
+        double _permissibleLoad;
 
-        public Chassis(int wheels, string serialNum, double allowed)
+        public Chassis(int numberOfWheels, string serialNumber, double permissibleLoad)
         {
-            Wheels = wheels;
-            SerialNum = serialNum;
-            Allowed = allowed;
+            NumberOfWheels = numberOfWheels;
+            SerialNumber = serialNumber;
+            PermissibleLoad = permissibleLoad;
         }
-        public int Wheels
+        public int NumberOfWheels
         {
-            get { return _Wheels; }
+            get { return _numberOfWheels; }
             set
             {
                 CheckNull(value);
-                _Wheels = value;
+                _numberOfWheels = value;
             }
         }
-        public string SerialNum
+        public string SerialNumber
         {
-            get { return _SerialNum; }
+            get { return _serialNumber; }
             set
             {
                 CheckNull(value);
-                _SerialNum = value;
+                if (value == string.Empty)
+                {
+                    throw new FormatException();
+                }
+                _serialNumber = value;
             }
         }
 
-        public double Allowed
+        public double PermissibleLoad
         {
-            get { return _Allowed; }
+            get { return _permissibleLoad; }
             set
             {
                 CheckNull(value);
-                _Allowed = value;
+                _permissibleLoad = value;
             }
         }
         private void CheckNull(object value)
         {
-            if (value == null)
+            if (value is null)
                 throw new ArgumentNullException();
         }
     }

@@ -4,7 +4,7 @@ namespace task_DEV_3
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
 
         }
