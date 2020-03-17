@@ -7,21 +7,18 @@ namespace task_DEV_2
     /// </summary>
     public class Number
     {
-        int _number;    //Decimal number
+        int _number10;  //Decimal number
         int _systemBase;//System base of result. From 2 to 20
         public Number(int number, int systemBase)
         {
-            _number = number;
+            _number10 = number;
             _systemBase = systemBase;
         }
-        public Number(string number, int systemBase)
+        public Number(string str, int systemBase)
         {
             //If we don't check it, it will work properly without any exception due to Convert.ToInt32
-            if (number is null)
-            {
-                throw new ArgumentNullException();
-            }
-            _number = Convert.ToInt32(number);
+            CheckStringIsCorrect(str);
+            _number10 = Convert.ToInt32(str);
             _systemBase = systemBase;
         }
         /// <summary>
@@ -30,12 +27,12 @@ namespace task_DEV_2
         /// <returns></returns>
         public string ConvertToAnotherBase()
         {
-            checkObjectIsNull();
+            CheckObjectIsNull();
             int number, systemBase;
             //Check if the convert is necessarily
             if (_systemBase == 10)
             {
-                return _number.ToString();
+                return _number10.ToString();
             }
             //Set systemBase if _systembase is in range
             if (_systemBase > 20 || _systemBase < 2)
@@ -47,13 +44,13 @@ namespace task_DEV_2
                 systemBase = _systemBase;
             }
             //Set number, make it positive if it's negative
-            if (_number < 0)
+            if (_number10 < 0)
             {
-                number = -_number;
+                number = -_number10;
             }
             else
             {
-                number = _number;
+                number = _number10;
             }
 
             int intFromDivision = number;
@@ -77,7 +74,7 @@ namespace task_DEV_2
             }
 
             //Adding minus for negative numbers
-            if (_number < 0)
+            if (_number10 < 0)
             {
                 convertedNumber = convertedNumber.Insert(0, "-");
             }
@@ -101,11 +98,29 @@ namespace task_DEV_2
         /// <summary>
         /// This method checks if our object is null
         /// </summary>
-        private void checkObjectIsNull()
+        private void CheckObjectIsNull()
         {
             if (this is null)
             {
                 throw new NullReferenceException();
+            }
+        }
+        private void CheckStringIsCorrect(string str)
+        {
+            if (str is null)
+            {
+                throw new ArgumentNullException();
+            }
+            if (str == string.Empty)
+            {
+                throw new FormatException();
+            }
+            for(int i = 0; i < str.Length; i++)
+            {
+                if (!Char.IsNumber(str, i) && str[i] != '-')
+                {
+                    throw new FormatException();
+                }
             }
         }
     }

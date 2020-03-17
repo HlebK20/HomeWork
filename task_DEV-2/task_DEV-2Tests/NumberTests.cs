@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using task_DEV_2;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace task_DEV_2.Tests
 {
@@ -12,14 +10,12 @@ namespace task_DEV_2.Tests
         [TestMethod()]
         [ExpectedException(typeof(ArgumentException), "SystemBase is out of range 2-20")]
         [DataRow(20, -4)]
-        [DataRow(20, -4)]
         [DataRow(20, 1)]
         [DataRow(20, 21)]
         public void ConvertToAnotherBaseTestCorrectInput(int number10, int systemBase)
         {
-            string actual;
             Number number = new Number(number10, systemBase);
-            actual = number.ConvertToAnotherBase();
+            number.ConvertToAnotherBase();
         }
         [TestMethod()]
         [DataRow(20, 2, "10100")]
@@ -45,17 +41,26 @@ namespace task_DEV_2.Tests
         [ExpectedException(typeof(NullReferenceException), "This object is null")]
         public void ConvertToAnotherBaseTestNullObjectInput()
         {
-            string actual;
             Number number = null;
-            actual = number.ConvertToAnotherBase();
+            number.ConvertToAnotherBase();
         }
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException), "One or more arguments are null")]
         public void ConvertToAnotherBaseTestNullStringInput()
         {
-            string actual;
             Number number = new Number(null,5);
-            actual = number.ConvertToAnotherBase();
+            number.ConvertToAnotherBase();
+        }
+        [TestMethod()]
+        [DataRow("")]
+        [DataRow(" ")]
+        [DataRow("123a321")]
+        [DataRow("123.321")]
+        [ExpectedException(typeof(FormatException), "Cant convert this string to integer")]
+        public void ConvertToAnotherBaseTestIncorrectStringInput(string str)
+        {
+            Number number = new Number(str, 5);
+            number.ConvertToAnotherBase();
         }
     }
 }
