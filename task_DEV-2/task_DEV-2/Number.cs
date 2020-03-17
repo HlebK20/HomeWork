@@ -52,10 +52,13 @@ namespace task_DEV_2
             {
                 number = _number10;
             }
-
             int intFromDivision = number;
             string convertedNumber = "";
             int i = 0;
+            if (number < systemBase)
+            {
+                convertedNumber+= ConvertIntToSymbol(number);
+            }
 
             //Counting maximal digit in result
             while (intFromDivision >= systemBase)

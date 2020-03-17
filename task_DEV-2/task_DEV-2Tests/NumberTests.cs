@@ -20,6 +20,8 @@ namespace task_DEV_2.Tests
         [TestMethod()]
         [DataRow(20, 2, "10100")]
         [DataRow(-20, 2, "-10100")]
+        [DataRow(-5, 16, "-5")]
+        [DataRow(-14, 16, "-E")]
         public void ConvertToAnotherBaseTestCorrectCalculatingForInt(int number10, int systemBase, string expected)
         {
             string actual;
@@ -30,6 +32,8 @@ namespace task_DEV_2.Tests
         [TestMethod()]
         [DataRow("20", 2, "10100")]
         [DataRow("-20", 2, "-10100")]
+        [DataRow("-5", 16, "-5")]
+        [DataRow("-14", 16, "-E")]
         public void ConvertToAnotherBaseTestCorrectCalculatingForString(string number10, int systemBase, string expected)
         {
             string actual;
