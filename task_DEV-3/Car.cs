@@ -2,7 +2,7 @@
 
 namespace task_DEV_3
 {
-    class Car : Vehicle
+    public class Car : Vehicle
     {
         int _numberOfSeats;
         new public void GetInfo()
