@@ -7,7 +7,7 @@
         new public void GetInfo()
         {
             base.GetInfo();
-            System.Console.WriteLine("This scooter is made of " + _material);
+            System.Console.WriteLine("\tThis scooter is made of " + _material);
         }
         public Scooter(string material, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis,_vehicleType)
         {

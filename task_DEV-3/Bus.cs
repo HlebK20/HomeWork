@@ -7,7 +7,7 @@
         new public void GetInfo()
         {
             base.GetInfo();
-            System.Console.WriteLine("Maximum passengers count is " + _maxPassengers);
+            System.Console.WriteLine("\tMaximum passengers count is " + _maxPassengers);
         }
         public Bus(int maxPassengers, Engine engine, Transmission transmission, Chassis chassis): base(engine,transmission,chassis,_vehicleType)
         {

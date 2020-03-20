@@ -40,6 +40,13 @@ namespace task_DEV_3
                 _numberOfGears = value;
             }
         }
+        public void GetInfo()
+        {
+            Console.WriteLine("\tTransmission");
+            Console.WriteLine("\t\tTransmission type is   " + _transmissionType);
+            Console.WriteLine("\t\tVendor is              " + _vendor);
+            Console.WriteLine("\t\tNumber of gears is     " + _numberOfGears + "\n");
+        }
         private void CheckNullOrEmpty(object value)
         {
             if (value == null)

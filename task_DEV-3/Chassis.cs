@@ -42,6 +42,13 @@ namespace task_DEV_3
                 _permissibleLoad = value;
             }
         }
+        public void GetInfo()
+        {
+            Console.WriteLine("\tChassis:");
+            Console.WriteLine("\t\tNumber of wheels is    " + _numberOfWheels);
+            Console.WriteLine("\t\tSerial number is       " + _serialNumber);
+            Console.WriteLine("\t\tPermissible load is    " + _permissibleLoad+"\n");
+        }
         private void CheckNullOrEmpty(object value)
         {
             if (value == null)

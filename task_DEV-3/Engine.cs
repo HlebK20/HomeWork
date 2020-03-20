@@ -6,7 +6,7 @@ namespace task_DEV_3
     {
         double _power;
         double _volume;
-        string _typeOfEngine;
+        string _engineType;
         string _serialNumber;
         public Engine(double power, double volume, string typeOfEngine, string serialNumber)
         {
@@ -35,11 +35,11 @@ namespace task_DEV_3
         }
         public string TypeOfEngine
         {
-            get { return _typeOfEngine; }
+            get { return _engineType; }
             set
             {
                 CheckNullOrEmpty(value);
-                _typeOfEngine = value;
+                _engineType = value;
             }
         }
         public string SerialNumber
@@ -50,6 +50,14 @@ namespace task_DEV_3
                 CheckNullOrEmpty(value);
                 _serialNumber = value;
             }
+        }
+        public void GetInfo()
+        {
+            Console.WriteLine("\tEngine:");
+            Console.WriteLine("\t\tPower is               " + _power);
+            Console.WriteLine("\t\tVolume is              " + _volume);
+            Console.WriteLine("\t\tEngine type is         " + _engineType);
+            Console.WriteLine("\t\tSerial number is       " + _serialNumber + "\n");
         }
         private void CheckNullOrEmpty(object value)
         {

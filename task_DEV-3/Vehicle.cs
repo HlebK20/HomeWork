@@ -10,10 +10,10 @@ namespace task_DEV_3
         string _vehicleType;
         protected void GetInfo()
         {
-            Console.WriteLine("Engine is " + _engine);
-            Console.WriteLine("Transmission is " + _transmission);
-            Console.WriteLine("Chassis is " + _chassis);
             Console.WriteLine("Vehicle type is " + _vehicleType);
+            _engine.GetInfo();
+            _transmission.GetInfo();
+            _chassis.GetInfo();
         }
         protected Vehicle(Engine engine, Transmission transmission, Chassis chassis, string vehicleType)
         {

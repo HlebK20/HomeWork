@@ -10,7 +10,7 @@ namespace task_DEV_3
         new public void GetInfo()
         {
             base.GetInfo();
-            Console.WriteLine("Number of seats is " + _numberOfSeats);
+            Console.WriteLine("\tNumber of seats is " + _numberOfSeats);
             
         }
         public Car(int numberOfSeats, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis,_vehicleType)
