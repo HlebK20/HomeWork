@@ -7,73 +7,57 @@ namespace task_DEV_2
     /// </summary>
     public class Number
     {
-        int _number10;  //Decimal number
-        int _systemBase;//System base of result. From 2 to 20
+        int _number10;                  //Decimal number
+        int _currentSystemBase = 10;    //Current systembase. From 2 to 20
+        const int systemBaseMin = 2;
+        const int systemBaseMax = 20;
+        string SystemBaseError = "This system base is not allowed. Allowed system bases: from " + systemBaseMin + " to " + systemBaseMax;
+        #region Constructors
         public Number(int number, int systemBase)
         {
             _number10 = number;
-            _systemBase = systemBase;
+            _currentSystemBase = systemBase;
         }
         public Number(string str, int systemBase)
         {
             //If we don't check it, it will work properly without any exception due to Convert.ToInt32
             CheckStringIsCorrect(str);
             _number10 = Convert.ToInt32(str);
-            _systemBase = systemBase;
+            _currentSystemBase = systemBase;
         }
+        public Number(int number)
+        {
+            _number10 = number;
+        }
+        public Number(string str)
+        {
+            //If we don't check it, it will work properly without any exception due to Convert.ToInt32
+            CheckStringIsCorrect(str);
+            _number10 = Convert.ToInt32(str);
+        }
+        #endregion Constructors
         /// <summary>
         /// This method converts from decimal system to _systemBase 
         /// </summary>
         /// <returns></returns>
-        public string ConvertToAnotherBase()
+        public string ConvertToAnotherBase(int systemBase)
         {
-            CheckObjectIsNull();
-            int number, systemBase;
-            //Check if the convert is necessarily
-            if (_systemBase == 10)
+            //Check systemBase
+            if (systemBase < systemBaseMin || systemBase > systemBaseMax)
             {
-                return _number10.ToString();
+                throw new ArgumentException(SystemBaseError);
             }
-            //Set systemBase if _systembase is in range
-            if (_systemBase > 20 || _systemBase < 2)
-            {
-                throw new ArgumentException();
-            }
-            else
-            {
-                systemBase = _systemBase;
-            }
+
             //Set number, make it positive if it's negative
-            if (_number10 < 0)
-            {
-                number = -_number10;
-            }
-            else
-            {
-                number = _number10;
-            }
-            int intFromDivision = number;
+            int number = Math.Abs(_number10);
+            int divisionRemain;
             string convertedNumber = "";
-            int i = 0;
-            if (number < systemBase)
-            {
-                convertedNumber+= ConvertIntToSymbol(number);
-            }
 
-            //Counting maximal digit in result
-            while (intFromDivision >= systemBase)
+            while(number!=0)
             {
-                intFromDivision = number / (int)Math.Pow(systemBase, i);
-                i++;
-            }
-
-            //Making conversion from largest digit
-            while (i != 0)
-            {
-                i--;
-                intFromDivision = number / (int)Math.Pow(systemBase, i);
-                number -= intFromDivision * (int)Math.Pow(systemBase, i);
-                convertedNumber += ConvertIntToSymbol(intFromDivision);
+                divisionRemain = number % systemBase;
+                number /= systemBase;
+                convertedNumber = ConvertIntToSymbol(divisionRemain) + convertedNumber;
             }
 
             //Adding minus for negative numbers
@@ -91,23 +75,13 @@ namespace task_DEV_2
         /// <returns>String with converted symbol</returns>
         private string ConvertIntToSymbol(int number)
         {
-            string notDigitalValues = "ABCDEFGIJI";
             if (number >= 10)
             {
-                return Convert.ToString(notDigitalValues[number - 10]);
+                return Convert.ToString((char)(65+(number-10)));
             }
             return Convert.ToString(number);
         }
-        /// <summary>
-        /// This method checks if our object is null
-        /// </summary>
-        private void CheckObjectIsNull()
-        {
-            if (this is null)
-            {
-                throw new NullReferenceException();
-            }
-        }
+
         private void CheckStringIsCorrect(string str)
         {
             if (str is null)

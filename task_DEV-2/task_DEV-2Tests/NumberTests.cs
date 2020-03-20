@@ -14,8 +14,8 @@ namespace task_DEV_2.Tests
         [DataRow(20, 21)]
         public void ConvertToAnotherBaseTestCorrectInput(int number10, int systemBase)
         {
-            Number number = new Number(number10, systemBase);
-            number.ConvertToAnotherBase();
+            Number number = new Number(number10);
+            number.ConvertToAnotherBase(systemBase);
         }
         [TestMethod()]
         [DataRow(20, 2, "10100")]
@@ -25,8 +25,8 @@ namespace task_DEV_2.Tests
         public void ConvertToAnotherBaseTestCorrectCalculatingForInt(int number10, int systemBase, string expected)
         {
             string actual;
-            Number number = new Number(number10, systemBase);
-            actual = number.ConvertToAnotherBase();
+            Number number = new Number(number10);
+            actual = number.ConvertToAnotherBase(systemBase);
             Assert.AreEqual(expected, actual);
         }
         [TestMethod()]
@@ -37,8 +37,8 @@ namespace task_DEV_2.Tests
         public void ConvertToAnotherBaseTestCorrectCalculatingForString(string number10, int systemBase, string expected)
         {
             string actual;
-            Number number = new Number(number10, systemBase);
-            actual = number.ConvertToAnotherBase();
+            Number number = new Number(number10);
+            actual = number.ConvertToAnotherBase(systemBase);
             Assert.AreEqual(expected, actual);
         }
         [TestMethod()]
@@ -46,14 +46,14 @@ namespace task_DEV_2.Tests
         public void ConvertToAnotherBaseTestNullObjectInput()
         {
             Number number = null;
-            number.ConvertToAnotherBase();
+            number.ConvertToAnotherBase(15);
         }
         [TestMethod()]
         [ExpectedException(typeof(ArgumentNullException), "One or more arguments are null")]
         public void ConvertToAnotherBaseTestNullStringInput()
         {
-            Number number = new Number(null,5);
-            number.ConvertToAnotherBase();
+            Number number = new Number(null);
+            number.ConvertToAnotherBase(5);
         }
         [TestMethod()]
         [DataRow("")]
@@ -63,8 +63,8 @@ namespace task_DEV_2.Tests
         [ExpectedException(typeof(FormatException), "Cant convert this string to integer")]
         public void ConvertToAnotherBaseTestIncorrectStringInput(string str)
         {
-            Number number = new Number(str, 5);
-            number.ConvertToAnotherBase();
+            Number number = new Number(str);
+            number.ConvertToAnotherBase(5);
         }
     }
 }
