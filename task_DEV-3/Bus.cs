@@ -3,13 +3,13 @@
     public class Bus : Vehicle
     {
         int _maxPassengers;
+        const string _vehicleType = "Bus";
         new public void GetInfo()
         {
-            System.Console.WriteLine("Type: Bus");
-            System.Console.WriteLine("Maximum passengers count is " + _maxPassengers);
             base.GetInfo();
+            System.Console.WriteLine("Maximum passengers count is " + _maxPassengers);
         }
-        public Bus(int maxPassengers, Engine engine, Transmission transmission, Chassis chassis): base(engine,transmission,chassis)
+        public Bus(int maxPassengers, Engine engine, Transmission transmission, Chassis chassis): base(engine,transmission,chassis,_vehicleType)
         {
             _maxPassengers = maxPassengers;
         }

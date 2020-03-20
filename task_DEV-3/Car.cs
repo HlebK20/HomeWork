@@ -5,17 +5,19 @@ namespace task_DEV_3
     public class Car : Vehicle
     {
         int _numberOfSeats;
+        const int _minSeatsNumber = 1;
+        const string _vehicleType = "Car";
         new public void GetInfo()
         {
-            Console.WriteLine("Type: Car");
-            Console.WriteLine("Number of seats is " + _numberOfSeats);
             base.GetInfo();
+            Console.WriteLine("Number of seats is " + _numberOfSeats);
+            
         }
-        public Car(int numberOfSeats, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis)
+        public Car(int numberOfSeats, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis,_vehicleType)
         {
-            if (numberOfSeats < 1)
+            if (numberOfSeats < _minSeatsNumber)
             {
-                throw new ArgumentException();
+                throw new ArgumentException("Number of seats must be greater than "+_minSeatsNumber);
             }
             _numberOfSeats = numberOfSeats; 
         }

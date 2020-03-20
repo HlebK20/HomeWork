@@ -4,14 +4,23 @@ namespace task_DEV_3
 {
     public class Transmission
     {
-        string _typeTransmission;
+        string _transmissionType;
         string _vendor;
         int _numberOfGears;
-        public Transmission(string typeTransmission, string vendor, int numberOfGears)
+        public Transmission(string transmissionType, string vendor, int numberOfGears)
         {
-            TypeTransmission = typeTransmission;
+            TransmissionType = transmissionType;
             Vendor = vendor;
             NumberOfGears = numberOfGears;
+        }
+        public string TransmissionType
+        {
+            get { return _transmissionType; }
+            set
+            {
+                CheckNullOrEmpty(value);
+                _transmissionType = value;
+            }
         }
         public string Vendor
         {
@@ -22,16 +31,6 @@ namespace task_DEV_3
                 _vendor = value;
             }
         }
-        public string TypeTransmission
-        {
-            get { return _typeTransmission; }
-            set
-            {
-                CheckNullOrEmpty(value);
-                _typeTransmission = value;
-            }
-        }
-
         public int NumberOfGears
         {
             get { return _numberOfGears; }

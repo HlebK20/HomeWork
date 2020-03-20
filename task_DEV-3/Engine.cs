@@ -5,7 +5,7 @@ namespace task_DEV_3
     public class Engine
     {
         double _power;
-        double _Volume;
+        double _volume;
         string _typeOfEngine;
         string _serialNumber;
         public Engine(double power, double volume, string typeOfEngine, string serialNumber)
@@ -15,13 +15,22 @@ namespace task_DEV_3
             TypeOfEngine = typeOfEngine;
             SerialNumber = serialNumber;
         }
-        public double Volume
+        public double Power
         {
-            get { return _Volume; }
+            get { return _power; }
             set
             {
                 CheckNullOrEmpty(value);
-                _Volume = value;
+                _power = value;
+            }
+        }
+        public double Volume
+        {
+            get { return _volume; }
+            set
+            {
+                CheckNullOrEmpty(value);
+                _volume = value;
             }
         }
         public string TypeOfEngine
@@ -31,15 +40,6 @@ namespace task_DEV_3
             {
                 CheckNullOrEmpty(value);
                 _typeOfEngine = value;
-            }
-        }
-        public double Power
-        {
-            get { return _power; }
-            set
-            {
-                CheckNullOrEmpty(value);
-                _power = value;
             }
         }
         public string SerialNumber
