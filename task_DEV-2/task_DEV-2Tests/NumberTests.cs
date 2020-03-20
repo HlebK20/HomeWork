@@ -60,6 +60,7 @@ namespace task_DEV_2.Tests
         [DataRow(" ")]
         [DataRow("123a321")]
         [DataRow("123.321")]
+        [DataRow("123-321")]
         [ExpectedException(typeof(FormatException), "Cant convert this string to integer")]
         public void ConvertToAnotherBaseTestIncorrectStringInput(string str)
         {
