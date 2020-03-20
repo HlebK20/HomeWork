@@ -7,6 +7,7 @@ namespace task_DEV_3
         string _transmissionType;
         string _vendor;
         int _numberOfGears;
+        const int _minNumberOfGears = 2;
         public Transmission(string transmissionType, string vendor, int numberOfGears)
         {
             TransmissionType = transmissionType;
@@ -37,6 +38,10 @@ namespace task_DEV_3
             set
             {
                 CheckNullOrEmpty(value);
+                if(value<_minNumberOfGears)
+                {
+                    throw new ArgumentOutOfRangeException("Number of gears can't be lower than "+_minNumberOfGears);
+                }
                 _numberOfGears = value;
             }
         }
@@ -51,11 +56,11 @@ namespace task_DEV_3
         {
             if (value == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Argument is null");
             }
             if (value.GetType() == typeof(string) && (string)value == string.Empty)
             {
-                throw new FormatException();
+                throw new FormatException("String is empty");
             }
         }
     }

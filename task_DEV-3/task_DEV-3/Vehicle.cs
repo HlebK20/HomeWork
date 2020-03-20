@@ -8,13 +8,6 @@ namespace task_DEV_3
         Transmission _transmission;
         Chassis _chassis;
         string _vehicleType;
-        protected void GetInfo()
-        {
-            Console.WriteLine("Vehicle type is " + _vehicleType);
-            _engine.GetInfo();
-            _transmission.GetInfo();
-            _chassis.GetInfo();
-        }
         protected Vehicle(Engine engine, Transmission transmission, Chassis chassis, string vehicleType)
         {
             _engine = engine;
@@ -22,15 +15,22 @@ namespace task_DEV_3
             _chassis = chassis;
             _vehicleType = CheckForNullAndEmpty(vehicleType);
         }
+        protected void GetInfo()
+        {
+            Console.WriteLine("Vehicle type is " + _vehicleType);
+            _engine.GetInfo();
+            _transmission.GetInfo();
+            _chassis.GetInfo();
+        }
         protected string CheckForNullAndEmpty(string input)
         {
+            if (input is null)
+            {
+                throw new ArgumentNullException("String is null");
+            }
             if (input == string.Empty)
             {
                 throw new FormatException("String is empty");
-            }
-            if (string.IsNullOrEmpty(input))
-            {
-                throw new ArgumentNullException("String is null");
             }
             return input;
         }

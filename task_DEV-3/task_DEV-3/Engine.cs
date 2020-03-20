@@ -8,6 +8,8 @@ namespace task_DEV_3
         double _volume;
         string _engineType;
         string _serialNumber;
+        const double _minPower = 0;
+        const double _minVolume = 0;
         public Engine(double power, double volume, string typeOfEngine, string serialNumber)
         {
             Power = power;
@@ -21,6 +23,10 @@ namespace task_DEV_3
             set
             {
                 CheckNullOrEmpty(value);
+                if(value<_minPower)
+                {
+                    throw new ArgumentOutOfRangeException("Power can't be lower than " + _minPower);
+                }
                 _power = value;
             }
         }
@@ -30,6 +36,10 @@ namespace task_DEV_3
             set
             {
                 CheckNullOrEmpty(value);
+                if (value < _minVolume)
+                {
+                    throw new ArgumentOutOfRangeException("Volume can't be lower than " + _minVolume);
+                }
                 _volume = value;
             }
         }
@@ -63,11 +73,11 @@ namespace task_DEV_3
         {
             if (value == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Argument is null");
             }
             if (value.GetType() == typeof(string) && (string)value == string.Empty)
             {
-                throw new FormatException();
+                throw new FormatException("String is empty");
             }
         }
     }

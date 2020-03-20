@@ -7,6 +7,8 @@ namespace task_DEV_3
         int _numberOfWheels;
         string _serialNumber;
         double _permissibleLoad;
+        const int _minNumberOfWheels = 1;
+        const double _minPermissibleLoad = 1;
 
         public Chassis(int numberOfWheels, string serialNumber, double permissibleLoad)
         {
@@ -20,6 +22,10 @@ namespace task_DEV_3
             set
             {
                 CheckNullOrEmpty(value);
+                if(value<_minNumberOfWheels)
+                {
+                    throw new ArgumentOutOfRangeException("Number of wheels can't be lower than " + _minNumberOfWheels);
+                }
                 _numberOfWheels = value;
             }
         }
@@ -32,13 +38,16 @@ namespace task_DEV_3
                 _serialNumber = value;
             }
         }
-
         public double PermissibleLoad
         {
             get { return _permissibleLoad; }
             set
             {
                 CheckNullOrEmpty(value);
+                if(value<_minPermissibleLoad)
+                {
+                    throw new ArgumentOutOfRangeException("Permissible load can't be lower than "+_minPermissibleLoad);
+                }
                 _permissibleLoad = value;
             }
         }
@@ -53,11 +62,11 @@ namespace task_DEV_3
         {
             if (value == null)
             {
-                throw new ArgumentNullException();
+                throw new ArgumentNullException("Argument is null");
             }
             if (value.GetType() == typeof(string) && (string)value == string.Empty)
             {
-                throw new FormatException();
+                throw new FormatException("String is empty");
             }
         }
     }
