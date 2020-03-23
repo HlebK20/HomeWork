@@ -18,11 +18,11 @@
                 _maxPassengers = value;
             }
         }
-        public Bus(int maxPassengers, Engine engine, Transmission transmission, Chassis chassis): base(engine,transmission,chassis,_vehicleType)
+        public Bus(int maxPassengers, Engine engine, Transmission transmission, Chassis chassis) : base(engine,transmission,chassis,_vehicleType)
         {
             MaxPassengers = maxPassengers;
         }
-        new public void GetInfo()
+        override public void GetInfo()
         {
             base.GetInfo();
             System.Console.WriteLine("\tMaximum passengers count is " + _maxPassengers);

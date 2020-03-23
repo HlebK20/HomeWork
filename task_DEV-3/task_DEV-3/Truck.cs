@@ -21,7 +21,7 @@
         {
             Height = height;
         }
-        new public void GetInfo()
+        override public void GetInfo()
         {
             base.GetInfo();
             System.Console.WriteLine("Truck height is " + _height);
