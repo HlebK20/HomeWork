@@ -13,7 +13,7 @@ namespace task_DEV_3.AutoparkTests
         [DataRow(5, 5, "Some Type", "ENG001")]
         [DataRow(5, 5, "SomeType", "ENG 001")]
         [TestMethod()]
-        public void EngineWrongStringFormatTest(double power, double volume, string typeOfEngine, string serialNumber)
+        public void EngineStringIncorrectFormatTest(double power, double volume, string typeOfEngine, string serialNumber)
         {
             Engine engine = new Engine(power, volume, typeOfEngine, serialNumber);
         }
@@ -40,7 +40,7 @@ namespace task_DEV_3.AutoparkTests
         [ExpectedException(typeof(FormatException))]
         [DataRow(1, "Some Type", 50)]
         [TestMethod()]
-        public void ChassisWrongStringFormatTest(int numberOfWheels, string serialNumber, double permissibleLoad)
+        public void ChassisStringIncorrectFormatTest(int numberOfWheels, string serialNumber, double permissibleLoad)
         {
             Chassis chassis = new Chassis(numberOfWheels ,serialNumber, permissibleLoad);
         }
@@ -67,7 +67,7 @@ namespace task_DEV_3.AutoparkTests
         [DataRow("Some Type", "SomeVendor", 5)]
         [DataRow("SomeType", "Some Vendor", 5)]
         [TestMethod()]
-        public void TransmissionWrongStringFormatTest(string typeOfTransmission, string vendor, int numberOfGears)
+        public void TransmissionStringIncorrectFormatTest(string typeOfTransmission, string vendor, int numberOfGears)
         {
             Transmission transmission = new Transmission(typeOfTransmission, vendor, numberOfGears);
         }
@@ -90,21 +90,83 @@ namespace task_DEV_3.AutoparkTests
     [TestClass()]
     public class BusTest
     {
+        Engine engine = new Engine(5, 5, "SomeType", "ENG001");
+        Transmission transmission = new Transmission("SomeType", "SomeVendor", 5);
+        Chassis chassis = new Chassis(5, "CHA001", 50);
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void BusNullArgumentTest()
+        {
+            Bus bus = new Bus(20, null, null, null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void BusSeatsNumberLowerThanMinimal()
+        {
+            Bus bus = new Bus(0, engine, transmission, chassis);
+        }
     }
     [TestClass()]
     public class CarTest
     {
+        Engine engine = new Engine(5, 5, "SomeType", "ENG001");
+        Transmission transmission = new Transmission("SomeType", "SomeVendor", 5);
+        Chassis chassis = new Chassis(5, "CHA001", 50);
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void CarNullArgumentTest()
+        {
+            Car car = new Car(20, null, null, null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void BusSeatsNumberLowerThanMinimal()
+        {
+            Car car = new Car(0, engine, transmission, chassis);
+        }
     }
     [TestClass()]
     public class ScooterTest
     {
+        Engine engine = new Engine(5, 5, "SomeType", "ENG001");
+        Transmission transmission = new Transmission("SomeType", "SomeVendor", 5);
+        Chassis chassis = new Chassis(5, "CHA001", 50);
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void ScooterNullArgumentTest()
+        {
+            Scooter scooter = new Scooter(null, null, null, null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(FormatException))]
+        [DataRow("Mater i all")]
+        [DataRow("Mater.iall")]
+        public void ScooterMaterialIncorrectFormat(string material)
+        {
+            Scooter scooter = new Scooter(material, engine, transmission, chassis);
+        }
     }
     [TestClass()]
     public class TruckTest
     {
+        Engine engine = new Engine(5, 5, "SomeType", "ENG001");
+        Transmission transmission = new Transmission("SomeType", "SomeVendor", 5);
+        Chassis chassis = new Chassis(5, "CHA001", 50);
 
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TruckNullArgumentTest()
+        {
+            Truck truck = new Truck(4, null, null, null);
+        }
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        public void TruckHeightLowerThanMinimal()
+        {
+            Truck truck = new Truck(0, engine, transmission, chassis);
+        }
     }
 }

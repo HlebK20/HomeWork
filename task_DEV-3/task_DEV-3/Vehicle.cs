@@ -8,11 +8,11 @@ namespace task_DEV_3
         Transmission _transmission;
         Chassis _chassis;
         string _vehicleType;
-        protected Vehicle(Engine engine, Transmission transmission, Chassis chassis, string vehicleType)
+        public Vehicle(Engine engine, Transmission transmission, Chassis chassis, string vehicleType)
         {
-            _engine = engine;
-            _transmission = transmission;
-            _chassis = chassis;
+            Engine = engine;
+            Transmission = transmission;
+            Chassis = chassis;
             _vehicleType = (string)CheckValid(vehicleType);
         }
         protected Chassis Chassis
@@ -51,7 +51,7 @@ namespace task_DEV_3
                 _vehicleType = value;
             }
         }
-        protected void GetInfo()
+        virtual public void GetInfo()
         {
             Console.WriteLine("Vehicle type is " + _vehicleType);
             _engine.GetInfo();

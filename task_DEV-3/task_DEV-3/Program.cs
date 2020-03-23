@@ -8,8 +8,8 @@ namespace task_DEV_3
         {
             try
             {
-                Engine engine = new Engine(2.5, 2.9, "Some type of engine", "25OHC");
-                Transmission transmission = new Transmission("Some type of transmission", "IDK inc", 6);
+                Engine engine = new Engine(2.5, 2.9, "SomeTypeOfEngine", "25OHC");
+                Transmission transmission = new Transmission("SomeTypeOfTransmission", "IDKinc", 6);
                 Chassis chassis = new Chassis(4, "123CDF", 1270);
                 Car car = new Car(4, engine, transmission, chassis);
                 car.GetInfo();
