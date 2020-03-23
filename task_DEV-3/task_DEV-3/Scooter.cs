@@ -18,7 +18,7 @@
             base.CheckValid(material);
             Material = material;
         }
-        new public void GetInfo()
+        override public void GetInfo()
         {
             base.GetInfo();
             System.Console.WriteLine("\tThis scooter is made of " + _material);

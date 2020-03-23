@@ -23,7 +23,7 @@ namespace task_DEV_3
         { 
             SeatsNumber = numberOfSeats; 
         }
-        new public void GetInfo()
+        override public void GetInfo()
         {
             base.GetInfo();
             Console.WriteLine("\tNumber of seats is " + _seatsNumber);
