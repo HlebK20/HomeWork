@@ -13,7 +13,43 @@ namespace task_DEV_3
             _engine = engine;
             _transmission = transmission;
             _chassis = chassis;
-            _vehicleType = CheckForNullAndEmpty(vehicleType);
+            _vehicleType = (string)CheckValid(vehicleType);
+        }
+        protected Chassis Chassis
+        {
+            get { return _chassis; } 
+            set
+            {
+                CheckValid(value);
+                _chassis = value;
+            }
+        }
+        protected Transmission Transmission
+        {
+            get { return _transmission; }
+            set
+            {
+                CheckValid(value);
+                _transmission = value;
+            }
+        }
+        protected Engine Engine
+        {
+            get { return _engine; }
+            set
+            {
+                CheckValid(value);
+                _engine = value;
+            }
+        }
+        protected string VehicleType
+        {
+            get => _vehicleType;
+            set
+            {
+                CheckValid(value);
+                _vehicleType = value;
+            }
         }
         protected void GetInfo()
         {
@@ -22,17 +58,31 @@ namespace task_DEV_3
             _transmission.GetInfo();
             _chassis.GetInfo();
         }
-        protected string CheckForNullAndEmpty(string input)
+        protected object CheckValid(object value)
         {
-            if (input is null)
+            if (value == null)
             {
-                throw new ArgumentNullException("String is null");
+                throw new ArgumentNullException("Argument is null");
             }
-            if (input == string.Empty)
+            if (value is string)
             {
-                throw new FormatException("String is empty");
+                if ((string)value == string.Empty)
+                {
+                    throw new FormatException("String is empty");
+                }
+                CheckStringSymbols((string)value);
             }
-            return input;
+            return value;
+        }
+        private void CheckStringSymbols(string str)
+        {
+            foreach (char symbol in str)
+            {
+                if (!Char.IsLetterOrDigit(symbol))
+                {
+                    throw new FormatException("String can contain only letters and numbers");
+                }
+            }
         }
     }
 }

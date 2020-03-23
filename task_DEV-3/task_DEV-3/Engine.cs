@@ -22,7 +22,7 @@ namespace task_DEV_3
             get { return _power; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 if(value<_minPower)
                 {
                     throw new ArgumentOutOfRangeException("Power can't be lower than " + _minPower);
@@ -35,7 +35,7 @@ namespace task_DEV_3
             get { return _volume; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 if (value < _minVolume)
                 {
                     throw new ArgumentOutOfRangeException("Volume can't be lower than " + _minVolume);
@@ -48,7 +48,7 @@ namespace task_DEV_3
             get { return _engineType; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 _engineType = value;
             }
         }
@@ -57,7 +57,7 @@ namespace task_DEV_3
             get { return _serialNumber; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 _serialNumber = value;
             }
         }
@@ -69,15 +69,29 @@ namespace task_DEV_3
             Console.WriteLine("\t\tEngine type is         " + _engineType);
             Console.WriteLine("\t\tSerial number is       " + _serialNumber + "\n");
         }
-        private void CheckNullOrEmpty(object value)
+        private void CheckValid(object value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("Argument is null");
             }
-            if (value.GetType() == typeof(string) && (string)value == string.Empty)
+            if (value is string)
             {
-                throw new FormatException("String is empty");
+                if ((string)value == string.Empty)
+                {
+                    throw new FormatException("String is empty");
+                }
+                CheckStringSymbols((string)value);
+            }
+        }
+        private void CheckStringSymbols(string str)
+        {
+            foreach (char symbol in str)
+            {
+                if (!Char.IsLetterOrDigit(symbol))
+                {
+                    throw new FormatException("String can contain only letters and numbers");
+                }
             }
         }
     }

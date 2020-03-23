@@ -9,13 +9,13 @@
             get { return _material; }
             set 
             {
-                base.CheckForNullAndEmpty(value);
+                base.CheckValid(value);
                 _material = value;
             }
         }
         public Scooter(string material, Engine engine, Transmission transmission, Chassis chassis):base(engine,transmission,chassis,_vehicleType)
         {
-            base.CheckForNullAndEmpty(material);
+            base.CheckValid(material);
             Material = material;
         }
         new public void GetInfo()

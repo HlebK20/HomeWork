@@ -21,7 +21,7 @@ namespace task_DEV_3
             get { return _numberOfWheels; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 if(value<_minNumberOfWheels)
                 {
                     throw new ArgumentOutOfRangeException("Number of wheels can't be lower than " + _minNumberOfWheels);
@@ -34,7 +34,7 @@ namespace task_DEV_3
             get { return _serialNumber; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 _serialNumber = value;
             }
         }
@@ -43,7 +43,7 @@ namespace task_DEV_3
             get { return _permissibleLoad; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 if(value<_minPermissibleLoad)
                 {
                     throw new ArgumentOutOfRangeException("Permissible load can't be lower than "+_minPermissibleLoad);
@@ -58,15 +58,29 @@ namespace task_DEV_3
             Console.WriteLine("\t\tSerial number is       " + _serialNumber);
             Console.WriteLine("\t\tPermissible load is    " + _permissibleLoad+"\n");
         }
-        private void CheckNullOrEmpty(object value)
+        private void CheckValid(object value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("Argument is null");
             }
-            if (value.GetType() == typeof(string) && (string)value == string.Empty)
+            if (value is string)
             {
-                throw new FormatException("String is empty");
+                if ((string)value == string.Empty)
+                {
+                    throw new FormatException("String is empty");
+                }
+                CheckStringSymbols((string)value);
+            }
+        }
+        private void CheckStringSymbols(string str)
+        {
+            foreach (char symbol in str)
+            {
+                if (!Char.IsLetterOrDigit(symbol))
+                {
+                    throw new FormatException("String can contain only letters and numbers");
+                }
             }
         }
     }

@@ -19,7 +19,7 @@ namespace task_DEV_3
             get { return _transmissionType; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 _transmissionType = value;
             }
         }
@@ -28,7 +28,7 @@ namespace task_DEV_3
             get { return _vendor; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 _vendor = value;
             }
         }
@@ -37,7 +37,7 @@ namespace task_DEV_3
             get { return _numberOfGears; }
             set
             {
-                CheckNullOrEmpty(value);
+                CheckValid(value);
                 if(value<_minNumberOfGears)
                 {
                     throw new ArgumentOutOfRangeException("Number of gears can't be lower than "+_minNumberOfGears);
@@ -52,15 +52,29 @@ namespace task_DEV_3
             Console.WriteLine("\t\tVendor is              " + _vendor);
             Console.WriteLine("\t\tNumber of gears is     " + _numberOfGears + "\n");
         }
-        private void CheckNullOrEmpty(object value)
+        private void CheckValid(object value)
         {
             if (value == null)
             {
                 throw new ArgumentNullException("Argument is null");
             }
-            if (value.GetType() == typeof(string) && (string)value == string.Empty)
+            if (value is string)
             {
-                throw new FormatException("String is empty");
+                if ((string)value == string.Empty)
+                {
+                    throw new FormatException("String is empty");
+                }
+                CheckStringSymbols((string)value);
+            }
+        }
+        private void CheckStringSymbols(string str)
+        {
+            foreach (char symbol in str)
+            {
+                if (!Char.IsLetterOrDigit(symbol))
+                {
+                    throw new FormatException("String can contain only letters and numbers");
+                }
             }
         }
     }
