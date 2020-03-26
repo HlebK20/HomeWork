@@ -4,6 +4,7 @@ namespace task_Student
 {
     class Student : ITaskPerformer
     {
+        Random random = new Random();
         static int number = 0;
         string _firstName = "FirstName";
         string _lastName = "LastName";
@@ -12,8 +13,8 @@ namespace task_Student
         public event EventHandler<EventArguments> TaskComplited;
         public Student()
         {
-            _firstName += number;
-            _lastName += number;
+            _firstName += number.ToString();
+            _lastName += number.ToString();
             number++;
         }
 
@@ -35,13 +36,11 @@ namespace task_Student
         }
         public void DoTask()
         {
-            String result = "";
-            Random random = new Random(Convert.ToInt32(DateTime.Now));
-            for(int i = 0; i < MAX_TASK_LENGTH; i++)
+            for (int i = 0; i < MAX_TASK_LENGTH; i++)
             {
                 _task += (char)random.Next((int)'A', (int)'Z');
             }
-            TaskComplited?.Invoke(this, new EventArguments(result));
+            TaskComplited?.Invoke(this, new EventArguments(_task));
         }
     }
 }
