@@ -8,6 +8,8 @@ namespace task_DEV_4
         const int START_SPEED = 200;
         const int MAX_SPEED = 1500;
         const int MIN_FLYING_DISTANCE = 10;
+        const int INCREASE_SPEED_EVERY = 10;
+        const int INCREASE_SPEED = 10;
         public bool FlyTo(Point destination)
         {
             if(currentLocation.Distance(destination) < MIN_FLYING_DISTANCE)
@@ -32,7 +34,7 @@ namespace task_DEV_4
                 traveled += speed;
                 if (speed < MAX_SPEED)
                 {
-                    speedIncrease = (int)traveled / 10;
+                    speedIncrease = (int)traveled / INCREASE_SPEED_EVERY * INCREASE_SPEED;
                     speed = START_SPEED + speedIncrease;
                 }
                 else
@@ -45,7 +47,7 @@ namespace task_DEV_4
             {
                 time -= (traveled - currentLocation.Distance(destination)) / speed;
             }
-            int timeInTicks = (int)(time * 3600 * Math.Pow(10, 7));
+            int timeInTicks = (int)(time * 60 * 60 * Math.Pow(10, 7));
             TimeSpan timeSpan = new TimeSpan(timeInTicks);
             return timeSpan;
         }
