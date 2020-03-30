@@ -10,8 +10,8 @@ namespace task_DEV_4
               _pointZ;
         public Point(float x, float y, float z)
         {
- 
-            _pointX = 
+
+            _pointX =
             _pointY =
             _pointZ = 0;
             PointX = x;
@@ -26,7 +26,7 @@ namespace task_DEV_4
             get { return _pointX; }
             set
             {
-                checkValue(value);
+                CheckValue(value);
                 _pointX = value;
             }
         }
@@ -35,7 +35,7 @@ namespace task_DEV_4
             get { return _pointY; }
             set
             {
-                checkValue(value);
+                CheckValue(value);
                 _pointY = value;
             }
         }
@@ -44,11 +44,11 @@ namespace task_DEV_4
             get { return _pointZ; }
             set
             {
-                checkValue(value);
+                CheckValue(value);
                 _pointZ = value;
             }
         }
-        private float checkValue(float value)
+        private float CheckValue(float value)
         {
             if (value < 0)
                 throw new ArgumentOutOfRangeException();

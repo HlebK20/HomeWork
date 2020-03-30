@@ -1,47 +1,44 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace task_DEV_4
+﻿namespace task_DEV_4
 {
     class Plane : IFlyable
     {
-        Point _point;
-        int _speed;
-        int _maxspeed;
-        public void FlyTo(Point destintaion)
+        Point currentLocation;
+        const int _startSpeed = 200;
+        const int _maxspeed = 1500;
+        public bool FlyTo(Point destintaion)
         {
-            _point = destintaion;
+            currentLocation = destintaion;
+            return true;
         }
         public double GetFlyTime(Point destination)
         {
-            double time=0;
+            int speed = _startSpeed;
+            double time = 0;
             double traveled = 0;
-            int increase = 0;
-            while (traveled <= _point.Distance(destination))
+            int speedIncrease;
+            while (traveled < currentLocation.Distance(destination))
             {
-                traveled += _speed;
-                if (_speed < _maxspeed)
+                traveled += speed;
+                if (speed < _maxspeed)
                 {
-                    increase = (int)(_speed / 10);
-                    _speed += increase;
+                    speedIncrease = (int)traveled / 10;
+                    speed = _startSpeed + speedIncrease;
+                }
+                else
+                {
+                    speed = _maxspeed;
                 }
                 time++;
             }
-            _speed = 0;
+            if (traveled > currentLocation.Distance(destination))
+            {
+                time -= (traveled - currentLocation.Distance(destination)) / speed;
+            }
             return time;
         }
-        public Plane(Point point, int speed, int maxspeed)
+        public Plane(Point destination)
         {
-            _point = point;
-            _speed = CheckBelowZero(speed);
-            _maxspeed = CheckBelowZero(maxspeed);
-        }
-        int CheckBelowZero(int valve)
-        {
-            if (valve >= 0)
-                return valve;
-            throw new ArgumentException();
+            currentLocation = destination;
         }
     }
 }

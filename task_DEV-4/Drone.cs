@@ -1,35 +1,39 @@
-﻿    using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System;
 
 namespace task_DEV_4
 {
-    
+
     class Drone : IFlyable
     {
-        Point _point;
-        int _speed;
-        public void FlyTo(Point p1)
+        Point _currentLocation;
+        const int _speed = 20;
+        const int stopsEvery = 10;
+        const int stopsDuration = 1;
+        const int maxFlyDistance = 1000;
+        public bool FlyTo(Point destination)
         {
-            if (_point.Distance(p1) <= 1000)
-                _point = p1;
+            if (_currentLocation.Distance(destination) <= maxFlyDistance)
+            {
+                _currentLocation = destination;
+                return true;
+            }
+            return false;
         }
-        public double GetFlyTime(Point p1)
+        public double GetFlyTime(Point destination)
         {
-            double time = 0;
-            time = _point.Distance(p1) / _speed *(10+1) / 10 ;
+            if (_currentLocation.Distance(destination) > maxFlyDistance)
+            {
+                throw new ArgumentOutOfRangeException("Drone cant fly distances more than 1000");
+            }
+            double time;
+            time = _currentLocation.Distance(destination) / _speed;
+            int stopsCount = (int)time / stopsEvery;
+            time += stopsCount * stopsDuration;
             return time;
         }
-        public Drone(Point point, int speed)
+        public Drone(Point currentLocation)
         {
-            _point = point;
-            _speed = CheckBelowZero(speed);
-        }
-        int CheckBelowZero(int valve)
-        {
-            if (valve >= 0)
-                return valve;
-            throw new ArgumentException();
+            _currentLocation = currentLocation;
         }
     }
 }

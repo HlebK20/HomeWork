@@ -2,8 +2,7 @@
 {
     interface IFlyable
     {
-        void FlyTo(Point p1);
-        double GetFlyTime(Point p1);
-        
-    }  
+        bool FlyTo(Point destination);
+        double GetFlyTime(Point destination);
+    }
 }
