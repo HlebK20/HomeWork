@@ -18,9 +18,6 @@ namespace task_DEV_4
             PointY = y;
             PointZ = z;
         }
-        /// <summary>
-        /// 
-        /// </summary>
         public float PointX
         {
             get { return _pointX; }
@@ -61,10 +58,6 @@ namespace task_DEV_4
         {
             return _pointX.ToString() + " " + _pointY.ToString() + " " + _pointZ.ToString();
         }
-        //public bool Equals(Point p)
-        //{
-        //    return ((Math.Abs(p.PointX - _pointX) < float.Epsilon ) && (Math.Abs(p.PointY - _pointY) < float.Epsilon) && (Math.Abs(p.PointZ - _pointZ) < float.Epsilon));
-        //}
         public float Distance(Point p)
         {
             return (float)(Math.Sqrt(Math.Pow(p.PointX - _pointX, 2) + Math.Pow(p.PointY - _pointY, 2) + Math.Pow(p.PointZ - _pointZ, 2)));
