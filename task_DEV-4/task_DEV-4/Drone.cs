@@ -19,7 +19,7 @@ namespace task_DEV_4
             }
             return false;
         }
-        public double GetFlyTime(Point destination)
+        public TimeSpan GetFlyTime(Point destination)
         {
             if (_currentLocation.Distance(destination) > MAX_FLY_DISTANCE)
             {
@@ -29,7 +29,9 @@ namespace task_DEV_4
             time = _currentLocation.Distance(destination) / _speed;
             int stopsCount = (int)time / STOPS_EVERY;
             time += stopsCount * STOPS_DURATION;
-            return time;
+            int timeInTicks = (int)(time * 3600 * Math.Pow(10, 7));
+            TimeSpan timeSpan = new TimeSpan(timeInTicks);
+            return timeSpan;
         }
         public Drone(Point currentLocation)
         {

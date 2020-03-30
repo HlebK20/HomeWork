@@ -1,8 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using task_DEV_4;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace task_DEV_4.Tests
 {

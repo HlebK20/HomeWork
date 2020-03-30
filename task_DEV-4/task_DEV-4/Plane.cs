@@ -17,7 +17,7 @@ namespace task_DEV_4
             currentLocation = destination;
             return true;
         }
-        public double GetFlyTime(Point destination)
+        public TimeSpan GetFlyTime(Point destination)
         {
             if (currentLocation.Distance(destination) < MIN_FLYING_DISTANCE)
             {
@@ -45,7 +45,9 @@ namespace task_DEV_4
             {
                 time -= (traveled - currentLocation.Distance(destination)) / speed;
             }
-            return time;
+            int timeInTicks = (int)(time * 3600 * Math.Pow(10, 7));
+            TimeSpan timeSpan = new TimeSpan(timeInTicks);
+            return timeSpan;
         }
         public Plane(Point destination)
         {

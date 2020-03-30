@@ -17,13 +17,16 @@ namespace task_DEV_4
             _currentLocation = destination;
             return true;
         }
-        public double GetFlyTime(Point destination)
+        public TimeSpan GetFlyTime(Point destination)
         {
-            if (_speed == 0)
+            if (_speed == MIN_SPEED)
             {
                 throw new ArgumentOutOfRangeException("This bird can't fly. Speed is 0");
             }
-            return _currentLocation.Distance(destination) / _speed;
+            double time = _currentLocation.Distance(destination) / _speed;
+            int timeInTicks = (int)(time * 3600 * Math.Pow(10, 7));
+            TimeSpan timeSpan = new TimeSpan(timeInTicks);
+            return timeSpan;
         }
         public Bird(Point currentLocation)
         {

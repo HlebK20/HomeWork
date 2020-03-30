@@ -45,14 +45,12 @@ namespace task_DEV_4
                 _pointZ = value;
             }
         }
-        private float CheckValue(float value)
+        private void CheckValue(float value)
         {
             if (value < 0)
             {
                 throw new ArgumentOutOfRangeException();
             }
-            return value;
-
         }
         public override string ToString()
         {
