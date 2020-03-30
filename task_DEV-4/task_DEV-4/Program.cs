@@ -6,6 +6,7 @@ namespace task_DEV_4
     {
         static void Main(string[] args)
         {
+            /*
             try
             {
                 Point p1 = new Point(20, 20, 20);
@@ -26,7 +27,7 @@ namespace task_DEV_4
             {
                 Console.WriteLine(exception.Message);
             }
-
+            */
         }
     }
 }

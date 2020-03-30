@@ -51,7 +51,9 @@ namespace task_DEV_4
         private float CheckValue(float value)
         {
             if (value < 0)
+            {
                 throw new ArgumentOutOfRangeException();
+            }
             return value;
 
         }
@@ -72,7 +74,9 @@ namespace task_DEV_4
             try
             {
                 if (p.GetType() == typeof(Point))
+                {
                     return ((Math.Abs(((Point)p).PointX - _pointX) < float.Epsilon) && (Math.Abs(((Point)p).PointY - _pointY) < float.Epsilon) && (Math.Abs(((Point)p).PointZ - _pointZ) < float.Epsilon));
+                }
                 return false;
             }
             catch (NullReferenceException)

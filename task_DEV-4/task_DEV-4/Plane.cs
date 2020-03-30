@@ -1,32 +1,43 @@
-﻿namespace task_DEV_4
+﻿using System;
+
+namespace task_DEV_4
 {
     public class Plane : IFlyable
     {
         Point currentLocation;
-        const int _startSpeed = 200;
-        const int _maxspeed = 1500;
-        public bool FlyTo(Point destintaion)
+        const int START_SPEED = 200;
+        const int MAX_SPEED = 1500;
+        const int MIN_FLYING_DISTANCE = 10;
+        public bool FlyTo(Point destination)
         {
-            currentLocation = destintaion;
+            if(currentLocation.Distance(destination) < MIN_FLYING_DISTANCE)
+            {
+                return false;
+            }
+            currentLocation = destination;
             return true;
         }
         public double GetFlyTime(Point destination)
         {
-            int speed = _startSpeed;
+            if (currentLocation.Distance(destination) < MIN_FLYING_DISTANCE)
+            {
+                throw new ArgumentOutOfRangeException("Distance can't be lower than "+MIN_FLYING_DISTANCE);
+            }
+            int speed = START_SPEED;
             double time = 0;
             double traveled = 0;
             int speedIncrease;
             while (traveled < currentLocation.Distance(destination))
             {
                 traveled += speed;
-                if (speed < _maxspeed)
+                if (speed < MAX_SPEED)
                 {
                     speedIncrease = (int)traveled / 10;
-                    speed = _startSpeed + speedIncrease;
+                    speed = START_SPEED + speedIncrease;
                 }
                 else
                 {
-                    speed = _maxspeed;
+                    speed = MAX_SPEED;
                 }
                 time++;
             }
