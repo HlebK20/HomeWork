@@ -3,7 +3,7 @@
 namespace task_DEV_4
 {
 
-    struct Point
+    public struct Point
     {
         float _pointX,
               _pointY,

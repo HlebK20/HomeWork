@@ -3,7 +3,7 @@
 namespace task_DEV_4
 {
 
-    class Drone : IFlyable
+    public class Drone : IFlyable
     {
         Point _currentLocation;
         const int _speed = 20;

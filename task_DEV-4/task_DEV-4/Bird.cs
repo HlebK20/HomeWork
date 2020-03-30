@@ -2,7 +2,7 @@
 
 namespace task_DEV_4
 {
-    class Bird : IFlyable
+    public class Bird : IFlyable
     {
         Point _currentLocation;
         int _speed;
@@ -28,6 +28,11 @@ namespace task_DEV_4
             _currentLocation = currentLocation;
             Random rnd = new Random();
             _speed = rnd.Next(0, 20);
+        }
+        public Bird(Point currentLocation, int speed)
+        {
+            _currentLocation = currentLocation;
+            _speed = speed;
         }
     }
 }

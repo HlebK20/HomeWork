@@ -1,6 +1,6 @@
 ﻿namespace task_DEV_4
 {
-    class Plane : IFlyable
+    public class Plane : IFlyable
     {
         Point currentLocation;
         const int _startSpeed = 200;
