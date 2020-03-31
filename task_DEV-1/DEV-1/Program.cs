@@ -9,7 +9,7 @@ namespace DEV_1
             try
             {
                string str = args[0];
-               Console.WriteLine("DifferentSymbolMaxLengthCounter.CountDifferentSymbols(str)");
+               Console.WriteLine(DifferentSymbolMaxLengthCounter.CountDifferentSymbols(str));
             }
             catch (Exception Exc)
             {
