@@ -31,7 +31,7 @@ namespace task_DEV_5
         }
         public static int CountSameLettersMaxLength(this string inputString)
         {
-            if (String.IsNullOrEmpty(inputString))
+            if (CountLetters(inputString) == 0)
             {
                 return 0;
             }
@@ -58,7 +58,7 @@ namespace task_DEV_5
         }
         public static int CountSameNumbersMaxLength(this string inputString)
         {
-            if (String.IsNullOrEmpty(inputString))
+            if (CountNumbers(inputString) == 0)
             {
                 return 0;
             }
@@ -82,6 +82,38 @@ namespace task_DEV_5
                 }
             }
             return maxCount;
+        }
+        private static int CountLetters(this string inputString)
+        {
+            if (String.IsNullOrEmpty(inputString))
+            {
+                return 0;
+            }
+            int amountLetters = 0;
+            foreach (char symbol in inputString)
+            {
+                if (Char.IsLetter(symbol))
+                {
+                    amountLetters++;
+                }
+            }
+            return amountLetters;
+        }
+        private static int CountNumbers(this string inputString)
+        {
+            if (String.IsNullOrEmpty(inputString))
+            {
+                return 0;
+            }
+            int amountNumbers = 0;
+            foreach(char symbol in inputString)
+            {
+                if(Char.IsNumber(symbol))
+                {
+                    amountNumbers++;
+                }
+            }
+            return amountNumbers;
         }
     }
 }
