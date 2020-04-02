@@ -20,13 +20,13 @@ namespace task_DEV_3
                 var carManualBuilder = new BuildCarManual();
                 var bus45SeatsBuilder = new BuildBus45Seats();
                 var truckAutoBuilder = new BuildTruckAuto();
-                vehicles.Add(carAutoPetrolBuilder.BuildVehicle());
-                vehicles.Add(carAutoPetrolBuilder.BuildVehicle());
-                vehicles.Add(carManualBuilder.BuildVehicle());
-                vehicles.Add(carManualBuilder.BuildVehicle());
-                vehicles.Add(carManualBuilder.BuildVehicle());
-                vehicles.Add(truckAutoBuilder.BuildVehicle());
-                vehicles.Add(bus45SeatsBuilder.BuildVehicle());
+                while (vehicles.Count<16)
+                {
+                    vehicles.Add(carAutoPetrolBuilder.BuildVehicle());
+                    vehicles.Add(carManualBuilder.BuildVehicle());
+                    vehicles.Add(bus45SeatsBuilder.BuildVehicle());
+                    vehicles.Add(truckAutoBuilder.BuildVehicle());
+                }
             }
             catch(Exception Exc)
             {
