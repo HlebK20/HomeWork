@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace task_DEV_3
 {
@@ -8,11 +9,24 @@ namespace task_DEV_3
         {
             try
             {
-                Engine engine = new Engine(2.5, 2.9, "SomeTypeOfEngine", "25OHC");
-                Transmission transmission = new Transmission("SomeTypeOfTransmission", "IDKinc", 6);
-                Chassis chassis = new Chassis(4, "123CDF", 1270);
-                Car car = new Car(4, engine, transmission, chassis);
-                car.GetInfo();
+                //Engine engine = new Engine(2.5, 2.9, "SomeTypeOfEngine", "25OHC");
+                //Transmission transmission = new Transmission("SomeTypeOfTransmission", "IDKinc", 6);
+                //Chassis chassis = new Chassis(4, "123CDF", 1270);
+                //Car car = new Car(4, engine, transmission, chassis);
+                //car.GetInfo();
+
+                List<Vehicle> vehicles = new List<Vehicle>();
+                var carAutoPetrolBuilder = new BuildCarAutoPetrol();
+                var carManualBuilder = new BuildCarManual();
+                var bus45SeatsBuilder = new BuildBus45Seats();
+                var truckAutoBuilder = new BuildTruckAuto();
+                vehicles.Add(carAutoPetrolBuilder.BuildVehicle());
+                vehicles.Add(carAutoPetrolBuilder.BuildVehicle());
+                vehicles.Add(carManualBuilder.BuildVehicle());
+                vehicles.Add(carManualBuilder.BuildVehicle());
+                vehicles.Add(carManualBuilder.BuildVehicle());
+                vehicles.Add(truckAutoBuilder.BuildVehicle());
+                vehicles.Add(bus45SeatsBuilder.BuildVehicle());
             }
             catch(Exception Exc)
             {
