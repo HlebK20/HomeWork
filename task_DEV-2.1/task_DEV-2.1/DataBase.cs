@@ -31,10 +31,10 @@ namespace task_DEV_2._1
             }    
             var xcars = new XElement("cars");
             var xcar = new XElement("car");
-            var xbrand = new XAttribute("brand", car.TradeMark);
+            var xtrademark = new XAttribute("brand", car.TradeMark);
             var xmodel = new XAttribute("model", car.Model);
             var xcost = new XAttribute("cost", car.Cost);
-            var xAmount = new XAttribute("Amount", car.Amount);
+            var xamount = new XAttribute("amount", car.Amount);
 
             if (_dataBase.Root != null)
             {
@@ -43,18 +43,18 @@ namespace task_DEV_2._1
                     xcars.Add(c);
                 }
             }
-            xcar.Add(xbrand, xmodel, xcost, xAmount);
+            xcar.Add(xtrademark, xmodel, xcost, xamount);
             xcars.Add(xcar);
             _dataBase = new XDocument();
             _dataBase.Add(xcars);
-            _dataBase.Save("cars.xml");
+            _dataBase.Save("Cars.xml");
         }
         /// <summary>
         /// Loads database from "cars.xml" file.
         /// </summary>
         public void LoadDatabaseFromXml()
         {
-            _dataBase = XDocument.Load("cars.xml");
+            _dataBase = XDocument.Load("Cars.xml");
         }
         /// <summary>
         /// Creates new database.
@@ -66,10 +66,10 @@ namespace task_DEV_2._1
         /// <summary>
         /// Calculates average car cost for all cars. Returns data via TaskDone event.
         /// </summary>
-        public void CalculateAverageCarcostForAll()
+        public void CalculateAverageCarСostForAll()
         {
             TaskDone?.Invoke(this, new TaskDoneEventArgs("Average car cost",
-                GetAverageCarcost(AlwaysTrueCheck, string.Empty).ToString()));   // We need to put something here for delegate to work.
+                GetAverageCarCost(AlwaysTrueCheck, string.Empty).ToString()));   // We need to put something here for delegate to work.
         }
         /// <summary>
         /// Calculates average car cost by brand. Returns data via TaskDone event.
@@ -78,20 +78,20 @@ namespace task_DEV_2._1
         public void CalculateAverageCarcostByType(string brand)
         {
             TaskDone?.Invoke(this, new TaskDoneEventArgs("Average car cost for selected trademark",
-                GetAverageCarcost(CorrectBrandCheck, brand.ToLower()).ToString()));
+                GetAverageCarCost(CorrectBrandCheck, brand.ToLower()).ToString()));
         }
         /// <summary>
-        /// Counts total Amount of cars. Returns data via TaskDone event.
+        /// Counts total amount of cars. Returns data via TaskDone event.
         /// </summary>
         public void CountAll()
         {
             XDocumentRootNullCheck();
-            int totalAmount = 0;
+            int totalamount = 0;
             foreach (XElement car in _dataBase.Root.Elements())
             {
-                totalAmount += Convert.ToInt32(car.Attribute("amount").Value);
+                totalamount += Convert.ToInt32(car.Attribute("amount").Value);
             }
-            TaskDone?.Invoke(this, new TaskDoneEventArgs("Total amount of cars", totalAmount.ToString()));
+            TaskDone?.Invoke(this, new TaskDoneEventArgs("Total amount of cars", totalamount.ToString()));
         }
         /// <summary>
         /// Counts how many different types there are. Returns data via TaskDone event.
@@ -112,19 +112,20 @@ namespace task_DEV_2._1
         /// <param name="ConditionChecking">Comparing condition</param>
         /// <param name="brand">Brand</param>
         /// <returns>Average car cost</returns>
-        private double GetAverageCarcost(Func<XElement, string, bool> ConditionChecking, string brand)
+        private double GetAverageCarCost(Func<XElement, string, bool> ConditionChecking, string brand)
         {
             XDocumentRootNullCheck();
-            double totalcost = 0, totalAmount = 0;
+            double totalcost = 0, totalamount = 0;
             foreach (XElement car in _dataBase.Root.Elements())
             {
                 if (ConditionChecking(car, brand))
                 {
-                    totalAmount += Convert.ToInt32(car.Attribute("Amount").Value);
-                    totalcost += Convert.ToInt32(car.Attribute("cost").Value);
+                    totalamount += Convert.ToInt32(car.Attribute("amount").Value);
+                    totalcost += Convert.ToInt32(car.Attribute("cost").Value) 
+                        * Convert.ToInt32(car.Attribute("amount").Value);
                 }
             }
-            return totalcost / totalAmount;
+            return totalcost / totalamount;
         }
         /// <summary>
         /// Checks if car brand equals to brand.
