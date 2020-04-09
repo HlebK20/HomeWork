@@ -75,10 +75,10 @@ namespace task_DEV_2._1
         /// Calculates average car cost by brand. Returns data via TaskDone event.
         /// </summary>
         /// <param name="brand">Brand which needs average cost calculation</param>
-        public void CalculateAverageCarcostByType(string brand)
+        public void CalculateAverageCarCostByType(string brand)
         {
             TaskDone?.Invoke(this, new TaskDoneEventArgs("Average car cost for selected trademark",
-                GetAverageCarCost(CorrectBrandCheck, brand.ToLower()).ToString()));
+                GetAverageCarCost(CorrectTradeMarkCheck, brand.ToLower()).ToString()));
         }
         /// <summary>
         /// Counts total amount of cars. Returns data via TaskDone event.
@@ -133,7 +133,7 @@ namespace task_DEV_2._1
         /// <param name="car">Car to check</param>
         /// <param name="brand">Correct brand</param>
         /// <returns>True if equals, false if not</returns>
-        private bool CorrectBrandCheck(XElement car, string brand)
+        private bool CorrectTradeMarkCheck(XElement car, string brand)
         {
             return car.Attribute("brand").Value == brand;
         }
