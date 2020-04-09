@@ -11,5 +11,13 @@ namespace task_DEV_2._1
         {
             _data = new List<Car>();
         }
+        public void AddCar(Car car)
+        {
+            if (car == null)
+            {
+                throw new ArgumentNullException();
+            }    
+            _data.Add(car);
+        }
     }
 }

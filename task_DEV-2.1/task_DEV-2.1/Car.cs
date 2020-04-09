@@ -10,6 +10,8 @@ namespace task_DEV_2._1
         string _model;
         int _amount;
         int _cost;
+        const int MIN_AMOUNT = 1;
+        const int MIN_COST = 1;
         public Car(string tradeMark, string model, int amount, int cost)
         {
             _tradeMark = tradeMark;
@@ -40,6 +42,10 @@ namespace task_DEV_2._1
             get { return _amount; }
             set
             {
+                if (value < MIN_AMOUNT)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
                 Amount = value;
             }
         }
@@ -48,6 +54,10 @@ namespace task_DEV_2._1
             get { return _cost; }
             set
             {
+                if(value < MIN_COST)
+                {
+                    throw new ArgumentOutOfRangeException();
+                }
                 Cost = value;
             }
         }
