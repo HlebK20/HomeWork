@@ -1,28 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Convertor
+﻿namespace Convertor
 {
     public class Convertor
     {
-        const double fahrenheitCoefficient = 5.0 / 9;
-        const double feetCoefficient = 3.281;
+        const double FAHRENHEIT_COEFFICIENT = 5.0 / 9;
+        const double FEET_COEFFICIENT = 3.281;
         public static double ConvertToCelsius(double fahrenheit)
         {
-            return ((fahrenheit - 32) * fahrenheitCoefficient);
+            return ((fahrenheit - 32) * FAHRENHEIT_COEFFICIENT);
         }
         public static double ConvertToFahrenheit(double celsius)
         {
-            return (celsius /fahrenheitCoefficient + 32);
+            return (celsius /FAHRENHEIT_COEFFICIENT + 32);
         }
         public static double ConvertToFeets(double metres)
         {
-            return metres * feetCoefficient;
+            return metres * FEET_COEFFICIENT;
         }
         public static double ConvertToMetres(double feets)
         {
-            return feets / feetCoefficient;
+            return feets / FEET_COEFFICIENT;
         }
 
     }

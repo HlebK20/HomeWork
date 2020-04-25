@@ -1,8 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Text;
 
 namespace Convertor
 {
@@ -26,7 +23,7 @@ namespace Convertor
             }
             if(!CommandsAndLinks.ContainsKey(arg2))
             {
-                throw new Exception("Uncorrect command in second argument");
+                throw new Exception("Incorrect command in second argument");
             }
         }
         public static double Execute(string arg1, string arg2)
@@ -34,9 +31,8 @@ namespace Convertor
             FillDictionary();
             CheckStringsAreValid(arg1, arg2);
             double valueToConvert = Convert.ToDouble(arg1);
-            Method associatedConvertor;
 
-            CommandsAndLinks.TryGetValue(arg2, out associatedConvertor);
+            CommandsAndLinks.TryGetValue(arg2, out Method associatedConvertor);
             return associatedConvertor.Invoke(valueToConvert);
         }
     }
