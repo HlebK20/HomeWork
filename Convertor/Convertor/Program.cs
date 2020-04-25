@@ -8,7 +8,7 @@ namespace Convertor
         {
             try
             {
-                Console.WriteLine(CmdHandler.Execute(args[0],args[1]));
+                Console.WriteLine(CmdConvertorHandler.Execute(args[0],args[1]));
             }
             catch (Exception exc)
             {
