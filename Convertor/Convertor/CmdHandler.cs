@@ -8,15 +8,14 @@ namespace Convertor
 {
     public class CmdHandler
     {
-        public static readonly List<string> AllowedConvertionsList = new List<string>();
-        
+        static readonly Dictionary<string, Method> CommandsAndLinks = new Dictionary<string, Method>();
         delegate double Method(double argument);
-        static void FillCommandList()
+        static void FillDictionary()
         {
-            AllowedConvertionsList.Add("CF");
-            AllowedConvertionsList.Add("FC");
-            AllowedConvertionsList.Add("FtM");
-            AllowedConvertionsList.Add("MFt");
+            CommandsAndLinks.Add("CF", Convertor.ConvertToFahrenheit);
+            CommandsAndLinks.Add("FC", Convertor.ConvertToCelsius);
+            CommandsAndLinks.Add("MFt", Convertor.ConvertToFeets);
+            CommandsAndLinks.Add("FtM", Convertor.ConvertToMetres);
         }
 
         static void CheckStringsAreValid(string arg1, string arg2)
@@ -25,29 +24,20 @@ namespace Convertor
             {
                 throw new Exception("Can't convert first argument into number");
             }
-            if(!AllowedConvertionsList.Contains(arg2))
+            if(!CommandsAndLinks.ContainsKey(arg2))
             {
                 throw new Exception("Uncorrect command in second argument");
             }
         }
         public static double Execute(string arg1, string arg2)
         {
-            FillCommandList();
+            FillDictionary();
             CheckStringsAreValid(arg1, arg2);
             double valueToConvert = Convert.ToDouble(arg1);
-            int caseSwitch = AllowedConvertionsList.IndexOf(arg2);
-            switch (caseSwitch)
-            {
-                case 0:
-                    return Convertor.ConvertToFahrenheit(valueToConvert);
-                case 1:
-                    return Convertor.ConvertToCelsius(valueToConvert);
-                case 2:
-                    return Convertor.ConvertToMetres(valueToConvert);
-                case 3:
-                    return Convertor.ConvertToFeets(valueToConvert);
-            }
-            return 0;
+            Method associatedConvertor;
+
+            CommandsAndLinks.TryGetValue(arg2, out associatedConvertor);
+            return associatedConvertor.Invoke(valueToConvert);
         }
     }
 }
