@@ -38,11 +38,10 @@ namespace task_DEV_2._3
                 driver.Url = value;
             }
         }
-        public void Waiter()
+        public IWebElement WaitUntilElementFound(string xpathToFind)
         {
-            WebDriverWait webDriverWait = new WebDriverWait(driver,TIME_TO_WAIT);
-            webDriverWait.Message = "Waiting...";
-            
+            return new WebDriverWait(driver, TIME_TO_WAIT)
+                .Until(ExpectedConditions.ElementExists(By.XPath(xpathToFind)));
         }
         public void CloseBrowser()
         {
