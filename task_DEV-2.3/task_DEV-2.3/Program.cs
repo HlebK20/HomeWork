@@ -12,7 +12,10 @@ namespace task_DEV_2._3
             emailOutlook.InputLogin();
             emailOutlook.InputPassword();
 
-            
+            EmailMailRu emailMailRu = new EmailMailRu();
+            emailMailRu.InputLogin();
+            emailMailRu.InputPassword();
+
         }
     }
 }

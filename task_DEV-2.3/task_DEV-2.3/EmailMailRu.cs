@@ -3,43 +3,35 @@ using OpenQA.Selenium;
 using System;
 using System.Collections.Generic;
 using System.Text;
-using System.Data.SqlTypes;
-using OpenQA.Selenium.Support.UI;
 
 namespace task_DEV_2._3
 {
-    class EmailOutlook
+    class EmailMailRu
     {
-        WebDriverWorker outlookWorker;
-        const string OUTLOOK_URL = "https://outlook.live.com/owa/";
-        const string LOGIN = "TAT2020TASK2-3.1@outlook.com";
-        const string PASSWORD = "ACCOUNT1PSWD";
+        WebDriverWorker mailruWorker;
+        const string mailru_URL = "https://mail.ru/";
+        const string LOGIN = "TAT2020ACC2@mail.ru";
+        const string PASSWORD = "ACCOUNT2PSWD";
         static Dictionary<string, string> ElementToXPath = new Dictionary<string, string>();
-        public EmailOutlook()
+        public EmailMailRu()
         {
-            outlookWorker = new WebDriverWorker();
-            outlookWorker.URL = OUTLOOK_URL;
+            mailruWorker = new WebDriverWorker();
+            mailruWorker.URL = mailru_URL;
 
-            ElementToXPath.Add("buttonSignIn", "/html/body/header/div/aside/div/nav/ul/li[2]/a");
-            ElementToXPath.Add("fieldLogin", "//*[@id=\"i0116\"]");
-            ElementToXPath.Add("buttonConfirmLogin", "//*[@id=\"idSIButton9\"]");
-            ElementToXPath.Add("fieldPassword", "//*[@id=\"i0118\"]");
-            ElementToXPath.Add("buttonConfirmPassword", "/html/body/div/form[1]/div/div/div[1]/div[2]/div[2]/div/div[2]/div/div[3]/div[2]/div/div/div/div/input");
-            ElementToXPath.Add("newMassageButton", "//*[@id=\"id__3\"]");
-            ElementToXPath.Add("fieldReciever", "//*[@id=\"app\"]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div/div[3]/div[1]/div/div/div/div[1]/div[1]/div[1]/div/div[1]/div/div/div/div/div[1]/div/div/input");
-            ElementToXPath.Add("fieldSubject", "//*[@id=\"TextField255\"]");
-            ElementToXPath.Add("fieldMessage", "//*[@id=\"app\"]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div/div[3]/div[1]/div/div/div/div[1]/div[2]/div[1]");
-            ElementToXPath.Add("buttonSendMail", "//*[@id=\"app\"]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div/div[3]/div[1]/div/div/div/div[1]/div[3]/div[2]/div[1]/button[1]/span");
+            ElementToXPath.Add("fieldLogin", "//*[@id='mailbox:login']");
+            ElementToXPath.Add("buttonConfirmLogin", "//*[@id=\"mailbox:submit\"]/input");
+            ElementToXPath.Add("fieldPassword", "//*[@id=\"mailbox:password\"]");
+            ElementToXPath.Add("buttonConfirmPassword", "//*[@id=\"mailbox:submit\"]/input");
+            ElementToXPath.Add("newMassageButton", "//*[@id=\"app-canvas\"]/div/div[1]/div[1]/div/div[2]/div[1]/div/div/div/div[1]/div/a/span");
+            ElementToXPath.Add("fieldReciever", "/html/body/div[14]/div[2]/div/div[1]/div[2]/div[3]/div[2]/div/div/div[1]/div/div[2]/div/div/label/div/div/input");
+            ElementToXPath.Add("fieldSubject", "/html/body/div[14]/div[2]/div/div[1]/div[2]/div[3]/div[3]/div[1]/div[2]/div/input");
+            ElementToXPath.Add("fieldMessage", "/html/body/div[14]/div[2]/div/div[1]/div[2]/div[3]/div[5]");
+            ElementToXPath.Add("buttonSendMail", "/html/body/div[14]/div[2]/div/div[2]/div[1]/span[1]/span");
         }
         IWebElement RegisterElement(string element)
         {
             ElementToXPath.TryGetValue(element, out string xpath);
-            return outlookWorker.WaitUntilElementFound(xpath);
-        }
-        public void ClickSignInButton()
-        {
-            IWebElement buttonSignIn = RegisterElement(nameof(buttonSignIn));
-            buttonSignIn.Click();
+            return mailruWorker.WaitUntilElementFound(xpath);
         }
         public void InputLogin()
         {

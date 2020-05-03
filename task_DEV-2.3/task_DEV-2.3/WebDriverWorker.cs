@@ -11,7 +11,7 @@ namespace task_DEV_2._3
     class WebDriverWorker
     {
         IWebDriver driver;
-        TimeSpan TIME_TO_WAIT = TimeSpan.FromSeconds(30);
+        TimeSpan TIME_TO_WAIT = TimeSpan.FromSeconds(10);
         public WebDriverWorker()
         {
             driver = new ChromeDriver();
