@@ -72,5 +72,9 @@ namespace task_DEV_2._3
             fieldMessage.SendKeys(message);
             buttonSendMail.Click();
         }
+        public IWebDriver GetWebDriver()
+        {
+            return mailruWorker.GetWebDriver();
+        }
     }
 }

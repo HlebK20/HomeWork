@@ -30,6 +30,10 @@ namespace task_DEV_2._3
             ElementToXPath.Add("fieldSubject", "//*[@id=\"TextField255\"]");
             ElementToXPath.Add("fieldMessage", "//*[@id=\"app\"]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div/div[3]/div[1]/div/div/div/div[1]/div[2]/div[1]");
             ElementToXPath.Add("buttonSendMail", "//*[@id=\"app\"]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div/div[3]/div[1]/div/div/div/div[1]/div[3]/div[2]/div[1]/button[1]/span");
+            ElementToXPath.Add("mail", "//*[@class='_1hHMVrN7VV4d6Ylz-FsMuP _18LAllQi61d4a4XNAr9prg']/child::span");
+            ElementToXPath.Add("fieldSender", "//*[@class='_3zJzxRam-s-FYVZNqcZ0BW']/child::span");
+            ElementToXPath.Add("fieldMessage", "//*[@class='_1I-CltEJ29YaTwzlbYDBB3']/shild::span");
+            ElementToXPath.Add("readStatus", "/html/body/div[2]/div/div[2]/div[1]/div[1]/div[3]/div[2]/div/div[1]/div[2]/div/div/div/div/div/div/div[1]/div/div/div/div[2]/div[1]/div[2]/button[2]/span");
         }
         IWebElement RegisterElement(string element)
         {
@@ -79,6 +83,31 @@ namespace task_DEV_2._3
             fieldSubject.SendKeys(subject);
             fieldMessage.SendKeys(message);
             buttonSendMail.Click();
+        }
+        public bool CheckMessageInInbox(string sender,  string message, bool isUnread)
+        {
+            IWebElement fieldSender, fieldMessage, readStatus;
+            try
+            {
+                fieldSender = RegisterElement(nameof(fieldSender));
+                fieldSender.GetAttribute("title");
+                fieldMessage = RegisterElement(nameof(fieldMessage));
+                readStatus = RegisterElement(nameof(readStatus));
+
+                if (fieldMessage.Text == message && fieldSender.GetAttribute("title") == sender)
+                {
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+        public IWebDriver GetWebDriver()
+        {
+            return outlookWorker.GetWebDriver();
         }
     }
 }

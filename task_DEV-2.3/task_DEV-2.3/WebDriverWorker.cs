@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Text;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
 using OpenQA.Selenium.Internal;
 using OpenQA.Selenium.Support.UI;
 
@@ -14,7 +16,7 @@ namespace task_DEV_2._3
         TimeSpan TIME_TO_WAIT = TimeSpan.FromSeconds(10);
         public WebDriverWorker()
         {
-            driver = new ChromeDriver();
+            driver = new FirefoxDriver();
             driver.Manage().Timeouts().ImplicitWait = TIME_TO_WAIT;
         }
 

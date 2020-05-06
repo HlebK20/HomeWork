@@ -15,7 +15,6 @@ namespace task_DEV_2._3
             EmailMailRu emailMailRu = new EmailMailRu();
             emailMailRu.InputLogin();
             emailMailRu.InputPassword();
-
         }
     }
 }
